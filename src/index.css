@@ -1,104 +1,122 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap");
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.music-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  overflow: hidden;
+}
 
-@layer base {
-  :root {
-    --background: 280 40% 8%;
-    --foreground: 50 100% 95%;
+.music-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
 
-    --card: 280 30% 12%;
-    --card-foreground: 50 100% 95%;
+.album-art {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+}
 
-    --popover: 280 30% 12%;
-    --popover-foreground: 50 100% 95%;
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-    --primary: 330 100% 65%;
-    --primary-foreground: 280 40% 8%;
+.music-card:hover .play-overlay {
+  opacity: 1;
+}
 
-    --secondary: 180 100% 50%;
-    --secondary-foreground: 280 40% 8%;
+.player-bar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+}
 
-    --muted: 280 20% 18%;
-    --muted-foreground: 50 30% 65%;
+.navbar-custom {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
-    --accent: 280 100% 70%;
-    --accent-foreground: 50 100% 95%;
+.sidebar {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 50 100% 95%;
+.badge-genre {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
 
-    --border: 280 30% 20%;
-    --input: 280 30% 20%;
-    --ring: 330 100% 65%;
+.recommendation-item {
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
 
-    --radius: 0.5rem;
+.recommendation-item:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
 
-    --sidebar-background: 280 40% 6%;
-    --sidebar-foreground: 50 100% 95%;
-    --sidebar-primary: 330 100% 65%;
-    --sidebar-primary-foreground: 280 40% 8%;
-    --sidebar-accent: 280 20% 18%;
-    --sidebar-accent-foreground: 50 100% 95%;
-    --sidebar-border: 280 30% 20%;
-    --sidebar-ring: 330 100% 65%;
+.search-bar {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+  outline: none;
+}
+
+.list-group-item-action:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground font-roboto;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-montserrat font-bold;
-  }
-}
-
-@layer utilities {
-  .hover-scale {
-    @apply transition-transform duration-200 hover:scale-105;
-  }
-
-  .glass-effect {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
-  }
-
-  .neon-glow {
-    text-shadow:
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
-  }
-
-  .neon-border {
-    box-shadow:
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      inset 0 0 10px currentColor;
-  }
-
-  .vinyl-spin {
-    animation: spin 4s linear infinite;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+.fade-in {
+  animation: fadeIn 0.5s ease;
 }
